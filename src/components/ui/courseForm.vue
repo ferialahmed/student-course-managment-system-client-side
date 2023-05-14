@@ -1,24 +1,25 @@
 <template>
     <form @submit.prevent="createCourse">
-        <div class="form-control" :class="{invalid: !nameValidity}">
+        <div class="form-control">
             <label for="courseName">Course Name</label>
             <input
                 type="text"
                 id="courseName"
+                required
                 v-model.trim="courseName"
                 @blur="validateForm"
             />
-            <p v-if="!nameValidity">This Field can't' be Empty</p>
         </div>
-        <div class="form-control" :class="{invalid: !descriptionValidity}">
+        <div class="form-control">
             <label for="courseDescription">Course Description</label>
             <textarea
                 type="text"
                 id="courseDescription"
+                required
                 v-model.trim="courseDescription"
                 @blur="validateForm"
             ></textarea>
-            <p v-if="!descriptionValidity">This Field can't' be Empty</p>
+            
         </div>
         <div class="form-control">
             <base-button>Create</base-button>
@@ -33,38 +34,16 @@ export default {
         return{
         courseName: '',
         courseDescription: '',
-        nameValidity: true,
-        descriptionValidity: true
-    }
-},
-computed:{
-    isFormValid(){
-        return this.nameValidity && this.descriptionValidity
     }
 },
 methods:{
-    validateForm(){
-        if(!this.courseName){
-            this.nameValidity = false
-        }
-        else{
-            this.nameValidity = true
-        }
-        if(!this.courseDescription){
-            this.descriptionValidity = false
-        }else{
-            this.descriptionValidity = true}
-    },
     createCourse(){
-        this.validateForm()
-        if(this.isFormValid){
             this.$store.dispatch('courses/createCourse',{
                 name: this.courseName,
                 description: this.courseDescription
             })
             console.log('course created successfully')
             this.$router.push('/courses');
-        }
     }
 }
 }
@@ -93,15 +72,6 @@ textarea:focus {
   background-color: #f0e6fd;
   outline: none;
   border-color: #3d008d;
-}
-
-.invalid p{
-    color: red;
-    font-size: 12px;
-    margin: 0.2rem 0 0.5rem 0;
-}
-.invalid input, .invalid textarea{
-    border: 1px solid red;
 }
 
 </style>
