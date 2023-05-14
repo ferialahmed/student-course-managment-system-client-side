@@ -1,0 +1,82 @@
+<template>
+    <form @submit.prevent="createStudent">
+        <div class="form-control" >
+            <label for="studentName">student Name</label>
+            <input
+                type="text"
+                id="studentName"
+                v-model.trim="studentName"
+            />
+        </div>
+        <div class="form-control" >
+            <label for="studentGender">student Gender</label>
+            <select name="studentGender" v-model="studentGender">
+    <option value="" >Please select one…</option>
+    <option value="female">Female</option>
+    <option value="male">Male</option></select>
+        </div>
+        <div class="form-control" >
+            <label for="studentAge">student Age</label>
+            <input
+                type="number"
+                id="studentAge"
+                v-model.trim="studentAge"
+            />
+        </div>
+        <div class="form-control">
+            <base-button>Create</base-button>
+        </div>
+    </form>
+</template>
+<script>
+import baseButton from './baseButton.vue';
+export default {
+    components:{baseButton},
+    data(){
+        return{
+        studentName: '',
+        studentGender:'',
+        studentAge: ''
+    }
+},
+methods:{
+    createStudent(){
+        console.log(this.studentName,this.studentGender, this.studentAge)
+        this.$store.dispatch('students/createStudent',{
+            name: this.studentName,
+            age: this.studentAge,
+            gender: this.studentGender
+        })
+        console.log('student created');
+        this.$router.push('/students');
+    }
+}
+}
+</script>
+<style scoped>
+.form-control {
+  margin: 0.5rem 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+  display: block;
+  width: 50%;
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #f0e6fd;
+  outline: none;
+  border-color: #3d008d;
+}
+
+</style>
