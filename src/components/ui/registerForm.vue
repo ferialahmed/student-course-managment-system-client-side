@@ -3,26 +3,28 @@
         
         <div class="form-control" >
             <label for="student">student</label>
-            <select name="student">
+            <select name="student" required >
                 <option value="" >Please select one…</option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
+                <option v-for="student in allStudents" :key="student.id" :value="student.name">{{student.name}}</option>
             </select>
         </div>
         <div class="form-control" >
             <label for="course">course</label>
-            <select name="course">
+            <select name="course" required>
                 <option value="" >Please select one…</option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
+                <option v-for="course in allCourses" :value="course.name" :key="course.id">{{course.name}}</option>
             </select>
         </div>
         <div class="form-control" >
-            <label for="studentAge">student Age</label>
+            <label for="grade">Grade</label>
             <input
                 type="number"
-                id="studentAge"
-                v-model.trim="studentAge"
+                id="grade"
+                min="0"
+                max="100"
+                step=".01"
+                required
+                v-model.trim="grade"
             />
         </div>
         <div class="form-control">
@@ -39,11 +41,29 @@ export default {
         
     }
 },
+computed:{
+    allStudents(){
+        return this.$store.getters['students/getStudents'];
+    },
+    allCourses(){
+        return this.$store.getters['courses/getCourses']
+    }
+},
 methods:{
     assignStudent(){
         console.log('student assigned to course');
         this.$router.push('/registered');
+    },
+    getStudents(){
+        this.$store.dispatch('students/setStudents');
+    },
+    getCourses(){
+        this.$store.dispatch('courses/setCourses');
     }
+},
+created(){
+    this.getStudents();
+    this.getCourses();
 }
 }
 </script>
