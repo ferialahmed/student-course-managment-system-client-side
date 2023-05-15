@@ -2,19 +2,20 @@
     <base-card>
         <base-button redirect="true" :to="directedLink">Assign student to Course</base-button>
        <div class="centralized">
-        <table class="table" v-if="registered">
+        
+        <table class="table" >
             <tr>
                 <th>Student Name</th>
                 <th>Course Name</th>
                 <th>Grade</th>
             </tr>
-            <tr v-for="(register, index) in registered" :key="index">
-                <td>{{ register.StudentName }}</td>
-                <td>{{ register.CourseName }}</td>
-                <td>{{ register.Grade }}</td>
+            <tr v-for="(assignedStudent,index) in getAssignedStudents" :key="index">
+                <td>{{ assignedStudent.studentName}}</td>
+                <td>{{ assignedStudent.courseName}}</td>
+                <td>{{ assignedStudent.gradeValue }}</td>
             </tr>
         </table>
-        <h3 v-else>No Assigned students</h3>
+        <!-- <h3 v-else>No Assigned students</h3> -->
     </div>
     </base-card>
 </template>
@@ -25,13 +26,35 @@ export default {
   components: { baseButton, baseCard },
   data(){
     return{
-        
+        students: [],
+        courses:[],
+        assignedStudents: []
     }
   },
   computed:{
     directedLink(){
         return '/assign'
+    },
+    getAssignedStudents(){
+        return this.$store.getters['assignedStudents/getAssignedStudents'];
     }
+    // },
+    // getStudents(){
+    //     return this.$store.getters['students/getStudents'];
+    // },
+    // getCourses(){
+    //     return this.$store.getters['courses/getCourses']
+    // }
+  },
+  methods:{
+    loadAssignedStudents(){
+        this.$store.dispatch('assignedStudents/setAssignedStudents');
+        
+    },
+    
+    },
+    created(){
+    this.loadAssignedStudents()
   }
     
 }

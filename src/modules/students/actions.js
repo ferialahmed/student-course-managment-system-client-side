@@ -1,6 +1,6 @@
 export default{
-    setStudents(context){
-        fetch('https://localhost:5001/api/Students')
+    async setStudents(context){
+        await fetch('https://localhost:5001/api/Students')
         .then(res => {
             if (res.ok){
                 return res.json()
