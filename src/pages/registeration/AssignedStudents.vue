@@ -1,9 +1,8 @@
 <template>
     <base-card>
-        <base-button redirect="true" :to="directedLink">Assign student to Course</base-button>
-       <div class="centralized">
-        
-        <table class="table" >
+    <base-button redirect="true" :to="directedLink">Assign student to Course</base-button>
+    <div class="centralized">
+        <table class="table" v-if="assignedStudents" >
             <tr>
                 <th>Student Name</th>
                 <th>Course Name</th>
@@ -15,7 +14,7 @@
                 <td>{{ assignedStudent.gradeValue }}</td>
             </tr>
         </table>
-        <!-- <h3 v-else>No Assigned students</h3> -->
+        <h3 v-else>No Assigned students</h3>
     </div>
     </base-card>
 </template>
@@ -23,40 +22,31 @@
 import baseButton from '@/components/ui/baseButton.vue';
 import baseCard from '@/components/ui/baseCard.vue';
 export default {
-  components: { baseButton, baseCard },
-  data(){
-    return{
-        students: [],
-        courses:[],
-        assignedStudents: []
-    }
-  },
-  computed:{
-    directedLink(){
-        return '/assign'
-    },
-    getAssignedStudents(){
-        return this.$store.getters['assignedStudents/getAssignedStudents'];
-    }
-    // },
-    // getStudents(){
-    //     return this.$store.getters['students/getStudents'];
-    // },
-    // getCourses(){
-    //     return this.$store.getters['courses/getCourses']
-    // }
-  },
-  methods:{
-    loadAssignedStudents(){
-        this.$store.dispatch('assignedStudents/setAssignedStudents');
-        
-    },
+components: { baseButton, baseCard },
+data(){
+return{
+    students: [],
+    courses:[],
+    assignedStudents: []
+}
+},
+computed:{
+directedLink(){
+    return '/assign'
+},
+getAssignedStudents(){
+    return this.$store.getters['assignedStudents/getAssignedStudents'];
+}
+},
+methods:{
+loadAssignedStudents(){
+    this.$store.dispatch('assignedStudents/setAssignedStudents');
     
-    },
-    created(){
-    this.loadAssignedStudents()
-  }
-    
+}
+},
+created(){
+this.loadAssignedStudents()
+}
 }
 </script>
 <style scoped>
@@ -66,9 +56,9 @@ export default {
     justify-content: center;
 }
 .centralized td, .centralized th{
-  
-  border: 2px solid #f4f3f3;
-  padding: 8px;
+    
+    border: 2px solid #f4f3f3;
+    padding: 8px;
 
 }
 .centralized th{
