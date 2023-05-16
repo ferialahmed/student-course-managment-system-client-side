@@ -1,61 +1,46 @@
 <template>
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <router-link to="/courses">Courses</router-link>
-          </li>
-          <li>
-            <router-link to="/students">Students</router-link>
-          </li>
-          <li>
-            <router-link to="/registered">Registeration</router-link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav bg-primary mx-auto">
+        <router-link to="/courses" class="nav-link ">Courses</router-link>
+        <router-link to="/students" class="nav-link">Students</router-link>
+        <router-link to="/registered" class="nav-link">Registration</router-link>
+      </div>
+    </div>
+</nav>
+</header>
   </template>
   
   <style scoped>
   header {
     width: 100%;
     height: 5rem;
-    background-color: #3a0061;
   }
   
   nav {
-    height: 100%;
+    padding-left: 1rem;
   }
-  
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  li {
-    margin: 0 2rem;
-  }
-  
   a {
     text-decoration: none;
-    font: inherit;
-    background: transparent;
+    font-size: 1.2rem;;
     border: 1px solid transparent;
     cursor: pointer;
     color: white;
-    padding: 0.5rem 1.5rem;
+    margin-right: 2rem;
+    /* padding: 0.5rem 1.5rem; */
     display: inline-block;
   }
   
   a:hover,
   a:active,
   a.active {
-  background-color: #270041;
-  border-radius: 1rem;
+  background-color: #2c8ef0;
+  color: white;
+  border-radius: 0.5rem;
+  
 }
   </style>

@@ -4,8 +4,8 @@
        <div class="centralized">
         <table class="table" v-if="getCourses">
             <tr>
-                <th>Course Name</th>
-                <th>Course Description</th>
+                <th class="bg-primary">Course Name</th>
+                <th class="bg-primary">Course Description</th>
             </tr>
             <tr v-for="course in getCourses" :key="course.name">
                 <td>{{ course.name }}</td>
@@ -53,13 +53,11 @@ export default {
     justify-content: center;
 }
 .centralized td, .centralized th{
-  
   border: 2px solid #f4f3f3;
   padding: 8px;
 
 }
 .centralized th{
-    background-color: #3a0061;
     color: white;
 }
 .centralized tr{

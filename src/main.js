@@ -1,12 +1,14 @@
-import { createApp } from 'vue'
-import { createRouter, createWebHistory} from 'vue-router'
-import AllCourses from './pages/courses/AllCourses.vue'
-import CreateCourse from './pages/courses/CreateCourse.vue'
+import { createApp } from 'vue';
+import { createRouter, createWebHistory} from 'vue-router';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import AllCourses from './pages/courses/AllCourses.vue';
+import CreateCourse from './pages/courses/CreateCourse.vue';
 import AllStudents from './pages/students/AllStudents';
 import CreateStudent from './pages/students/CreateStudent.vue';
 import AssignedStudents from './pages/registeration/AssignedStudents.vue';
-import AssignStudent from './pages/registeration/AssignStudent.vue'
-import App from './App.vue'
+import AssignStudent from './pages/registeration/AssignStudent.vue';
+import App from './App.vue';
 import store from './store';
 
 const router = createRouter({

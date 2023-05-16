@@ -1,6 +1,7 @@
 <template>
     <form @submit.prevent="createStudent">
-        <div class="form-control" >
+        <div  class="form-control">
+
             <label for="studentName">student Name</label>
             <input
                 type="text"
@@ -8,16 +9,12 @@
                 required
                 v-model.trim="studentName"
             />    
-        </div>
-        <div class="form-control" >
             <label for="studentGender">student Gender</label>
             <select name="studentGender" v-model="studentGender" required>
                 <option value="" >Please select one…</option>
                 <option value="female">Female</option>
                 <option value="male">Male</option>
             </select>
-        </div>
-        <div class="form-control" >
             <label for="studentAge">student Age</label>
             <input
                 type="number"
@@ -26,8 +23,6 @@
                 required
                 v-model.trim="studentAge"
             /> 
-        </div>
-        <div class="form-control">
             <base-button>Create</base-button>
         </div> 
     </form>
@@ -62,26 +57,15 @@ methods:{
 .form-control {
   margin: 0.5rem 0;
 }
-
 label {
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
 }
-
 input{
   display: block;
   width: 50%;
   border: 1px solid #ccc;
   font: inherit;
 }
-
-input:focus
-{
-  background-color: #f0e6fd;
-  outline: none;
-  border-color: #3d008d;
-}
-
-
 </style>

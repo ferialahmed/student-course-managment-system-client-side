@@ -1,8 +1,8 @@
 <template>
-    <button v-if="!redirect">
+    <button class="bg-primary" v-if="!redirect">
         <slot></slot>
     </button>
-    <router-link v-else :to="to">
+    <router-link  class="bg-primary" v-else :to="to">
         <slot></slot>
     </router-link>
 </template>
@@ -14,22 +14,14 @@ export default {
 <style scoped>
 button,a{
   text-decoration: none;
+  font-weight: 600;
   padding: 0.75rem 1.5rem;
-  font: inherit;
-  background-color: #3a0061;
-  border: 1px solid #3a0061;
+  border: none;
   color: white;
   cursor: pointer;
   border-radius: 30px;
   margin-top: 2rem;
   margin-right: 0.5rem;
   display: inline-block;
-}
-a:hover,
-a:active,
-button:hover,
-button:active {
-  background-color: #270041;
-  border-color: #270041;
 }
 </style>

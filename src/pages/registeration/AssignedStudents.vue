@@ -3,10 +3,10 @@
     <base-button redirect="true" :to="directedLink">Assign student to Course</base-button>
     <div class="centralized">
         <table class="table" v-if="assignedStudents" >
-            <tr>
-                <th>Student Name</th>
-                <th>Course Name</th>
-                <th>Grade</th>
+            <tr >
+                <th class="bg-primary">Student Name</th>
+                <th class="bg-primary">Course Name</th>
+                <th class="bg-primary">Grade</th>
             </tr>
             <tr v-for="(assignedStudent,index) in getAssignedStudents" :key="index">
                 <td>{{ assignedStudent.studentName}}</td>
@@ -62,7 +62,6 @@ this.loadAssignedStudents()
 
 }
 .centralized th{
-    background-color: #3a0061;
     color: white;
 }
 .centralized tr{

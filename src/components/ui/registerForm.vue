@@ -7,15 +7,11 @@
                 <option value="" >Please select one…</option>
                 <option v-for="student in allStudents" :key="student.id" :value="student.name" :studentid="student.id">{{student.name}}</option>
             </select>
-        </div>
-        <div class="form-control" >
             <label for="course">course</label>
             <select name="course" required @change="getCourseId($event)" v-model="courseName">
                 <option value="" >Please select one…</option>
                 <option v-for="course in allCourses" :value="course.name" :key="course.id" :courseid="course.id">{{course.name}}</option>
             </select>
-        </div>
-        <div class="form-control" >
             <label for="grade">Grade</label>
             <input
                 type="number"
@@ -26,8 +22,6 @@
                 required
                 v-model.trim="grade"
             />
-        </div>
-        <div class="form-control">
             <base-button>Register</base-button>
         </div>
     </form>

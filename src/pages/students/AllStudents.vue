@@ -1,12 +1,12 @@
 <template>
     <base-card>
-        <base-button redirect="true" :to="directedLink">Create Student</base-button>
-       <div class="centralized">
+    <base-button redirect="true" :to="directedLink">Create Student</base-button>
+    <div class="centralized">
         <table class="table" v-if="getStudents">
             <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Age</th>
+                <th class="bg-primary">Name</th>
+                <th class="bg-primary">Gender</th>
+                <th class="bg-primary">Age</th>
             </tr>
             <tr v-for="student in getStudents" :key="student.name">
                 <td>{{ student.name }}</td>
@@ -61,7 +61,6 @@ export default {
 
 }
 .centralized th{
-    background-color: #3a0061;
     color: white;
 }
 .centralized tr{
