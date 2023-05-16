@@ -1,8 +1,11 @@
 <template>
     <base-card>
-    <base-button redirect="true" :to="directedLink">Create Student</base-button>
+    <base-button redirect="true" :to="directedLink">Register Student</base-button>
     <div class="centralized">
-        <table class="table" v-if="getStudents">
+      <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <table class="table" v-else-if="getStudents.length > 0">
             <tr>
                 <th class="bg-primary">Name</th>
                 <th class="bg-primary">Gender</th>
@@ -14,18 +17,19 @@
                 <td>{{ student.age }}</td>
             </tr>
         </table>
-        <h3 v-else>No Students were added</h3>
+        <h3 v-else>No Registered Students</h3>
     </div>
     </base-card>
 </template>
 <script>
 import baseButton from '@/components/ui/baseButton.vue';
 import baseCard from '@/components/ui/baseCard.vue';
+import baseSpinner from '@/components/ui/baseSpinner.vue';
 export default {
-  components: { baseButton, baseCard },
+  components: { baseButton, baseCard , baseSpinner},
   data(){
     return{
-        
+        isLoading : false
     }
   },
   computed:{
@@ -33,19 +37,19 @@ export default {
         return this.$route.path + '/create'
     },
     getStudents(){
-        const students = this.$store.getters['students/getStudents'];
-        return students;
+        return this.$store.getters['students/getStudents'];
     }
   },
   created(){
     this.loadStudents();
   },
   methods:{
-    loadStudents(){
-        this.$store.dispatch('students/setStudents')
+    async loadStudents(){
+        this.isLoading = true;
+        await this.$store.dispatch('students/setStudents');
+        this.isLoading = false;
     }
   }
-    
 }
 </script>
 <style scoped>

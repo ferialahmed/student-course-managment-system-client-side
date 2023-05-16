@@ -1,17 +1,13 @@
 export default{
-    setAssignedStudents(context){
+    async setAssignedStudents(context){
         
-        fetch ('https://localhost:5001/api/AssignStudent')
-        .then(res => {
-            if (res.ok){
-                return res.json();
-            }else{
-                throw new Error(res.message || 'Failed to get Assigned Students')
-            }
-        })
-        .then(data =>{
-            context.commit('setAssignedStudents', data);
-        })
+        const response = await fetch ('https://localhost:5001/api/AssignStudent');
+        const data = await response.json();
+        console.log(response)
+        if(!response.ok){
+            throw new Error(response.message || 'Failed to get Assigned Students')
+        }
+        context.commit('setAssignedStudents', data);
     },
     assignStudentToCourse(context, payload){
         fetch('https://localhost:5001/api/AssignStudent',{

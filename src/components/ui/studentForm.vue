@@ -23,7 +23,7 @@
                 required
                 v-model.trim="studentAge"
             /> 
-            <base-button>Create</base-button>
+            <base-button>Register</base-button>
         </div> 
     </form>
 </template>

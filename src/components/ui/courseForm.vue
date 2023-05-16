@@ -18,6 +18,7 @@
                 @blur="validateForm"
             ></textarea>
             <base-button>Create</base-button>
+            <p v-if="courseExist">This Course Exists</p>
         </div>
     </form>
 </template>
@@ -31,14 +32,21 @@ export default {
         courseDescription: '',
     }
 },
+computed:{
+        courseExist(){
+            return this.$store.getters['courses/getMessage']
+        }
+},
 methods:{
     createCourse(){
             this.$store.dispatch('courses/createCourse',{
                 name: this.courseName,
                 description: this.courseDescription
-            })
-            console.log('course created successfully')
+            });
+            console.log(this.courseExist);
+            if(!this.courseExist){
             this.$router.push('/courses');
+            }
     }
 }
 }

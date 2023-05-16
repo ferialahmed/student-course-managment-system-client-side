@@ -2,7 +2,10 @@
     <base-card>
         <base-button redirect="true" :to="directedLink">Create Course</base-button>
        <div class="centralized">
-        <table class="table" v-if="getCourses">
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <table class="table" v-else-if="getCourses.length > 0">
             <tr>
                 <th class="bg-primary">Course Name</th>
                 <th class="bg-primary">Course Description</th>
@@ -13,18 +16,19 @@
             </tr>
         </table>
         
-        <h3 v-else>No Courses Were Created</h3>
+        <h3 v-else>No Courses</h3>
     </div>
     </base-card>
 </template>
 <script>
 import baseButton from '@/components/ui/baseButton.vue';
 import baseCard from '@/components/ui/baseCard.vue';
+import BaseSpinner from '@/components/ui/baseSpinner.vue';
 export default {
-  components: { baseButton, baseCard },
+  components: { baseButton, baseCard, BaseSpinner },
   data(){
     return{
-        
+        isLoading: false
     }
   },
   computed:{
@@ -32,18 +36,19 @@ export default {
         return this.$route.path + '/create'
     },
     getCourses(){
-        const courses = this.$store.getters['courses/getCourses'];
-        return courses;
+        return this.$store.getters['courses/getCourses'];
     }
   },
   created(){
     this.loadCourses();
   },
   methods:{
-    loadCourses(){
-        this.$store.dispatch('courses/setCourses')
+    async loadCourses(){
+      this.isLoading = true;
+      await this.$store.dispatch('courses/setCourses');
+      this.isLoading = false;
     }
-  }    
+  }
 }
 </script>
 <style scoped>

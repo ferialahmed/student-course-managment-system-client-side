@@ -22,10 +22,10 @@
                 required
                 v-model.trim="grade"
             />
-            <base-button>Register</base-button>
+            <base-button>Enroll</base-button>
         </div>
     </form>
-    <h3 v-if="!isvalid">is already registered to Course</h3>
+    <p v-if="!isvalid">This Student is already registered to this Course</p>
 </template>
 <script>
 import baseButton from './baseButton.vue';
@@ -113,9 +113,8 @@ textarea:focus {
   border-color: #3d008d;
 }
 
-h3{
-    margin: 0.5rem 0 0.5rem;
-    color: red;
+p{
+    margin: 0.5rem 0 0.5rem
 
 }
 </style>

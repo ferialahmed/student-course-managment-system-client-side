@@ -1,15 +1,12 @@
 export default{
     async setStudents(context){
-        await fetch('https://localhost:5001/api/Students')
-        .then(res => {
-            if (res.ok){
-                return res.json()
-            }
-            else{
-                throw new Error (res.message || 'Can\'t fetch students');
-            }
-        })
-        .then(data => context.commit('setStudents',data))
+       const response =  await fetch('https://localhost:5001/api/Students');
+       const data = await response.json();
+       console.log(data);
+       if(!response.ok){
+           throw new Error (response.message || 'Can\'t fetch students');
+       }
+        context.commit('setStudents', data)
     },
     createStudent(context, payload){
         fetch('https://localhost:5001/api/Students',{

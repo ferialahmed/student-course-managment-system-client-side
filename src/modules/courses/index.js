@@ -6,7 +6,8 @@ const courses = {
     namespaced: true,
     state(){
         return{
-            courses: []
+            courses: [],
+            message: ''
         }
     },
     mutations,

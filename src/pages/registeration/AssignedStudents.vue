@@ -1,8 +1,11 @@
 <template>
     <base-card>
-    <base-button redirect="true" :to="directedLink">Assign student to Course</base-button>
+    <base-button redirect="true" :to="directedLink">Enroll Student</base-button>
     <div class="centralized">
-        <table class="table" v-if="assignedStudents" >
+        <div v-if="isLoading">
+          <base-spinner></base-spinner>
+        </div>
+        <table class="table" v-else-if="getAssignedStudents.length > 0" >
             <tr >
                 <th class="bg-primary">Student Name</th>
                 <th class="bg-primary">Course Name</th>
@@ -14,20 +17,22 @@
                 <td>{{ assignedStudent.gradeValue }}</td>
             </tr>
         </table>
-        <h3 v-else>No Assigned students</h3>
+        <h3 v-else>No Enrolled students </h3>
     </div>
     </base-card>
 </template>
 <script>
 import baseButton from '@/components/ui/baseButton.vue';
 import baseCard from '@/components/ui/baseCard.vue';
+import baseSpinner from '@/components/ui/baseSpinner.vue';
 export default {
-components: { baseButton, baseCard },
+components: { baseButton, baseCard, baseSpinner },
 data(){
 return{
     students: [],
     courses:[],
-    assignedStudents: []
+    assignedStudents: [],
+    isLoading: false
 }
 },
 computed:{
@@ -40,10 +45,19 @@ getAssignedStudents(){
 }
 },
 methods:{
-loadAssignedStudents(){
-    this.$store.dispatch('assignedStudents/setAssignedStudents');   
+async loadAssignedStudents(){
+    this.isLoading = true
+    await this.$store.dispatch('assignedStudents/setAssignedStudents');   
+    this.isLoading = false
 }
 },
+//   watch:{
+//     getAssignedStudents(newValue){
+//       if(newValue.length > 0){
+//         this.isLoading = false
+//       }
+//     }
+//   },    
 created(){
 this.loadAssignedStudents()
 }
