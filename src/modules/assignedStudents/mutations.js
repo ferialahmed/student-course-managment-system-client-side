@@ -1,6 +1,8 @@
 export default{
     setAssignedStudents(state, payload){
         state.assignedStudents = payload
-        console.log(state.assignedStudents)
+    },
+    assignStudentToCourse(state, payload){
+        state.assignedStudents.push(payload)
     }
 }

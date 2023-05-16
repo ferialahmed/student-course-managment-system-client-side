@@ -4,7 +4,7 @@
             <label for="studentName">student Name</label>
             <input
                 type="text"
-                id="studentName"
+                name="studentName"
                 required
                 v-model.trim="studentName"
             />    
@@ -21,7 +21,7 @@
             <label for="studentAge">student Age</label>
             <input
                 type="number"
-                id="studentAge"
+                name="studentAge"
                 min="10"
                 required
                 v-model.trim="studentAge"

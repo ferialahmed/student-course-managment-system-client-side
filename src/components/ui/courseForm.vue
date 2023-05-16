@@ -4,7 +4,7 @@
             <label for="courseName">Course Name</label>
             <input
                 type="text"
-                id="courseName"
+                name="courseName"
                 required
                 v-model.trim="courseName"
                 @blur="validateForm"
@@ -14,7 +14,7 @@
             <label for="courseDescription">Course Description</label>
             <textarea
                 type="text"
-                id="courseDescription"
+                name="courseDescription"
                 required
                 v-model.trim="courseDescription"
                 @blur="validateForm"

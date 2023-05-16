@@ -35,13 +35,13 @@ directedLink(){
     return '/assign'
 },
 getAssignedStudents(){
+    console.log(this.$store.getters['assignedStudents/getAssignedStudents'])
     return this.$store.getters['assignedStudents/getAssignedStudents'];
 }
 },
 methods:{
 loadAssignedStudents(){
-    this.$store.dispatch('assignedStudents/setAssignedStudents');
-    
+    this.$store.dispatch('assignedStudents/setAssignedStudents');   
 }
 },
 created(){
